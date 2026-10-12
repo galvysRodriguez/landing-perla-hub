@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%" style="background-color: #F8FAFC; font-family: 'Inter', system-ui, sans-serif;">
+  <defs>
+    <!-- Gradiente Escudo Protector (Soberanía de Datos) -->
+    <linearGradient id="hostGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E1B4B" />
+      <stop offset="50%" stop-color="#3730A3" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+    
+    <!-- Gradiente Ola Caribe (Hospitalidad Proactiva) -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    
+    <!-- Gradiente de la Perla (Ingresos y Valor) -->
+    <radialGradient id="pearlGlow" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </radialGradient>
+  </defs>
+
+  <!-- Símbolo: El Escudo y La Perla -->
+  <g transform="translate(180, 200)">
+    <!-- Base Protectora (Ostra / Escudo) -->
+    <path d="M -70,0 C -70,-80 20,-100 65,-45 C 95,-5 85,65 35,85 C -20,105 -70,65 -70,0 Z" fill="url(#hostGrad)" opacity="0.95" />
+    
+    <!-- Dinamismo Operativo (Ola Turquesa) -->
+    <path d="M -45,15 C -45,-45 10,-70 45,-25 C 65,10 55,45 15,55 C -15,65 -45,45 -45,15 Z" fill="url(#shieldGrad)" />
+    
+    <!-- Activo de Valor (La Perla) -->
+    <circle cx="-5" cy="5" r="24" fill="url(#pearlGlow)" />
+    <circle cx="-14" cy="-4" r="6" fill="#FFFFFF" opacity="0.9" />
+  </g>
+
+  <!-- Tipografía Corporativa Modo Claro -->
+  <g transform="translate(310, 215)">
+    <!-- Texto principal en Azul Índigo Profundo para máxima legibilidad -->
+    <text x="0" y="0" fill="#0F172A" font-size="64" font-weight="800" letter-spacing="3">LA PERLA <tspan fill="#10B981" font-weight="300">HOST</tspan></text>
+    <!-- Subtítulo en Gris Pizarra (Slate 600) -->
+    <text x="5" y="40" fill="#475569" font-size="14" font-weight="600" letter-spacing="8" text-transform="uppercase">Hospitality Intelligence</text>
+  </g>
+</svg>
