@@ -5,8 +5,10 @@ import { useLang } from "../i18n.jsx";
 import Reveal, { SectionHeading } from "./Reveal.jsx";
 import { PRODUCT_ICONS } from "./mocks/shared.jsx";
 
-// FormSubmit relays the demo request to this inbox (no backend needed on GitHub Pages).
-const DEMO_ENDPOINT = "https://formsubmit.co/ajax/galvys22@gmail.com";
+// Web3Forms emails each demo request to galvys22@gmail.com (no backend needed on
+// GitHub Pages). The access key is public by design; get it at web3forms.com.
+const DEMO_INBOX = "galvys22@gmail.com";
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || "";
 
 const PMS = ["Oracle Opera", "Cloudbeds", "Mews", "SiteMinder", "Infor HMS", "Amadeus", "Sabre SynXis", "Protel", "Guesty", "eZee", "Teseo", "SoftHotel", "Bukeer", "Booking.com", "Expedia", "Google", "TripAdvisor", "WhatsApp"];
 
@@ -222,26 +224,31 @@ export function Contact() {
     const form = e.currentTarget;
     const email = form.email.value;
     const scale = form.scale.value;
+    const subject = `Solicitud de demo de Perla Suite: ${email}`;
+    const message = `${email} solicitó una demo de Perla Suite.\nPortafolio: ${scale}\nIdioma: ${lang}`;
     setStatus("sending");
     try {
-      const res = await fetch(DEMO_ENDPOINT, {
+      if (!WEB3FORMS_KEY) throw new Error("Missing Web3Forms key");
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          _subject: `Solicitud de demo de Perla Suite: ${email}`,
-          _replyto: email,
-          _template: "table",
-          _captcha: "false",
-          Correo: email,
-          Portafolio: scale,
-          Idioma: lang,
-          Mensaje: `${email} solicitó una demo de Perla Suite.`,
+          access_key: WEB3FORMS_KEY,
+          subject,
+          from_name: "Perla Suite · perlahub.com",
+          replyto: email,
+          email,
+          portafolio: scale,
+          idioma: lang,
+          message,
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || String(data.success) === "false") throw new Error(data.message || res.statusText);
+      if (!res.ok || !data.success) throw new Error(data.message || res.statusText);
       setStatus("sent");
     } catch {
+      // Fall back to the visitor's mail client so the request is never lost.
+      window.location.href = `mailto:${DEMO_INBOX}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
       setStatus("error");
     }
   }

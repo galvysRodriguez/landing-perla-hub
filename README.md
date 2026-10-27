@@ -35,7 +35,7 @@ Each file found replaces that tab's live simulation (the badge turns into "Recor
 
 ## Demo form
 
-- The demo form posts to FormSubmit (`DEMO_ENDPOINT` in `Sections.jsx`), which emails each request to galvys22@gmail.com. The first request triggers an activation email from FormSubmit that must be confirmed once.
+The demo form posts to [Web3Forms](https://web3forms.com), which emails each request to galvys22@gmail.com (`Contact` in `Sections.jsx`). Its access key comes from the `WEB3FORMS_KEY` repository variable at build time (`VITE_WEB3FORMS_KEY` in a local `.env`). Without a key, or if the request fails, the form opens the visitor's mail client with the request prefilled.
 
 ## Deploy
 
